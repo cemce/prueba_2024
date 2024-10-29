@@ -1,11 +1,13 @@
-Proyecto de Gestión de Pizzas e Ingredientes
-Descripción
+
+# Proyecto de Gestión de Pizzas e Ingredientes
 Este proyecto es una aplicación web para gestionar pizzas e ingredientes. Permite a los usuarios añadir, editar y eliminar pizzas e ingredientes, así como ver una lista de todos los ingredientes disponibles. La aplicación está construida utilizando Laravel para el backend y Bootstrap para el frontend.
 
-Estructura del Proyecto
+## Estructura del proyecto
+
 El proyecto sigue una estructura MVC (Modelo-Vista-Controlador) estándar de Laravel. A continuación se describen los componentes principales:
 
 Modelos
+
 Pizza: Representa una pizza en la aplicación.
 Ingrediente: Representa un ingrediente en la aplicación.
 Controladores
@@ -16,16 +18,10 @@ dashboard.blade.php: Página principal del dashboard.
 pizzas/index.blade.php: Lista de pizzas.
 pizzas/edit.blade.php: Formulario para editar una pizza.
 ingredientes/index.blade.php: Lista de ingredientes.
-Decisiones de Diseño
-No Uso de Repositories
-El patrón Repository es una buena práctica para desacoplar la lógica de acceso a datos de la lógica de negocio. Sin embargo, en este proyecto se decidió no utilizar el patrón Repository por las siguientes razones:
+## Decisión de diseño
+Se ha dejado de lado los Observer, Listeners y Events debido a la poca profundidad de la tarea. Aún así, se ha hecho el Factory, aunque personalmente siempre he usado Seeder para hacer los fakers de  la base de datos.
 
-Simplicidad: La aplicación es relativamente pequeña y sencilla. Añadir una capa adicional de abstracción con Repositories podría complicar innecesariamente el código sin aportar beneficios significativos.
-Mantenimiento: En proyectos pequeños, mantener una capa adicional de Repositories puede ser más costoso en términos de tiempo y esfuerzo. La lógica de acceso a datos es mínima y puede manejarse fácilmente dentro de los controladores.
-Rapidez de Desarrollo: Al no utilizar Repositories, se reduce el tiempo de desarrollo inicial, permitiendo centrarse en la funcionalidad principal de la aplicación.
-No Uso de Observers, Eventos y Listeners
-Laravel proporciona una potente funcionalidad para manejar eventos y listeners, así como observers para observar cambios en los modelos. Sin embargo, en este proyecto se decidió no utilizar estas características por las siguientes razones:
+Tampoco se ha usado Repositories por lo mismo, y todas aquellas funciones necesarias se han usado dentro de los modelos pertinentes.
 
-Simplicidad: La lógica de negocio en esta aplicación es bastante directa y no requiere la complejidad adicional de eventos y listeners. La mayoría de las operaciones pueden manejarse directamente en los controladores.
-Mantenimiento: Añadir observers y eventos puede hacer que el flujo de la aplicación sea más difícil de seguir y depurar. En una aplicación pequeña, es más fácil mantener la lógica de negocio en un solo lugar.
-Escalabilidad: Aunque los observers y eventos son útiles en aplicaciones grandes y complejas, en este proyecto no se espera un crecimiento significativo que justifique su uso.
+Por el poco tiempo que he tenido en las manos, se han hecho los todos los métodos de los Controllers posibles para que se vea que entiendo la función de los mismos, pero por problemas ajenos a mi persona (fallo XAMPP MySQL, ida de luz por las lluvias en casa...)
+no he podido hacer las vistas de edit.
