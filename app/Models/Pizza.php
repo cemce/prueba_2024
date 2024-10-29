@@ -37,5 +37,10 @@ class Pizza extends Model
         $totalPrice = $ingredientsPrice * 1.5;
         $this->update(['precio' => $totalPrice]);
     }
+
+    public function delete() {
+        $this->ingredientes()->detach();
+        return parent::delete();
+    }
 }
 

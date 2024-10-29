@@ -22,6 +22,7 @@ class PizzaController extends Controller
 
     public function store(PizzaStore $request) {
         $pizza = Pizza::create($request->validated());
+        //Aunque el attach no siga del todo los principios del solid, en este caso me parece adecuado para no crear un método en el modelo, ya que es una app pequeña y no se va a reutilizar
         $pizza->ingredientes()->attach($request->ingredientes);
         $pizza->calculateTotalPrice();
         return redirect()->route('pizza.index');
@@ -38,5 +39,11 @@ class PizzaController extends Controller
     public function update(PizzaUpdate $request, Pizza $pizza) {
         $pizza->update($request->validated());
         return redirect()->route('pizza.index');
+    }
+
+    public function destroy(Pizza $pizza) {
+        $pizza->ingredientes()->detach();
+        $pizza->delete();
+        return redirect()->route('pizza.index')->with('success', 'Pizza eliminada correctamente');
     }
 }
