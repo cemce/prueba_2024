@@ -23,6 +23,7 @@
                         <th>Descripción</th>
                         <th>Precio</th>
                         <th>Ingredientes</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,13 +39,17 @@
                                     @endforeach
                                 </ul>
                             </td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-show" data-toggle="modal" data-target="#showPizzaModal" data-id="{{ $pizza->id }}">Show</button>
+                                <button type="button" class="btn btn-danger btn-delete" data-toggle="modal" data-target="#deletePizzaModal" data-id="{{ $pizza->id }}">Delete</button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         @endif
 
-        <!-- Modal -->
+        <!-- Modal Añadir Pizza -->
         <div class="modal fade" id="addPizzaModal" tabindex="-1" aria-labelledby="addPizzaModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -88,6 +93,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Mostrar Pizza -->
+        <div class="modal fade" id="showPizzaModal" tabindex="-1" aria-labelledby="showPizzaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="showPizzaModalLabel">Detalles de la Pizza</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Nombre:</strong> <span id="pizza-nombre"></span></p>
+                        <p><strong>Descripción:</strong> <span id="pizza-descripcion"></span></p>
+                        <p><strong>Precio:</strong> <span id="pizza-precio"></span></p>
+                        <p><strong>Ingredientes:</strong></p>
+                        <ul id="pizza-ingredientes"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Eliminar Pizza -->
+        <div class="modal fade" id="deletePizzaModal" tabindex="-1" aria-labelledby="deletePizzaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletePizzaModalLabel">Eliminar Pizza</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de que deseas eliminar esta pizza?</p>
+                        <form id="deletePizzaForm" method="POST" action="">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -113,6 +162,26 @@
 
             $(document).on('click', '.remove-ingrediente', function() {
                 $(this).closest('.input-group').remove();
+            });
+
+
+            $('.btn-show').click(function() {
+                var pizzaId = $(this).data('id');
+                $.get('/pizzas/' + pizzaId, function(data) {
+                    $('#pizza-nombre').text(data.nombre);
+                    $('#pizza-descripcion').text(data.descripcion);
+                    $('#pizza-precio').text(data.precio);
+                    $('#pizza-ingredientes').empty();
+                    data.ingredientes.forEach(function(ingrediente) {
+                        $('#pizza-ingredientes').append('<li>' + ingrediente.nombre + '</li>');
+                    });
+                });
+            });
+
+            // Configurar el formulario de eliminación
+            $('.btn-delete').click(function() {
+                var pizzaId = $(this).data('id');
+                $('#deletePizzaForm').attr('action', '/pizzas/' + pizzaId);
             });
         });
     </script>

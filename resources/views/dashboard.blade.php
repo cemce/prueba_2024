@@ -14,9 +14,9 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Pizzas</h5>
-                        <p class="card-text">Ver y gestionar todas las pizzas.</p>ç
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Pizza">
-                        <a href="{{ route('pizza.index')}}" class="btn btn-primary">Ir a Pizzas</a>
+                        <img src="https://via.placeholder.com/150" class="img-fluid mb-3 rounded-pill" alt="Pizza">
+                        <p class="card-text">Ver y gestionar todas las pizzas.</p>
+                        <a href="{{ route('pizza.index') }}" class="btn btn-primary">Ir a Pizzas</a>
                     </div>
                 </div>
             </div>
@@ -24,8 +24,9 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Ingredientes</h5>
+                        <img src="https://via.placeholder.com/150" class="img-fluid mb-3 rounded-pill" alt="Ingredientes">
                         <p class="card-text">Ver y gestionar todos los ingredientes.</p>
-                        <a href="{{route('ingrediente.index')}}" class="btn btn-primary">Ir a Ingredientes</a>
+                        <a href="{{ route('ingrediente.index') }}" class="btn btn-primary">Ir a Ingredientes</a>
                     </div>
                 </div>
             </div>
