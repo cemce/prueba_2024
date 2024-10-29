@@ -15,18 +15,15 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
+
                     <th>Nombre</th>
-                    <th>Descripción</th>
                     <th>Precio</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($ingredientes as $ingrediente)
                     <tr>
-
                         <td>{{ $ingrediente->nombre }}</td>
-                        <td>{{ $ingrediente->descripcion }}</td>
                         <td>{{ $ingrediente->precio }}</td>
                     </tr>
                 @endforeach
@@ -45,15 +42,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('ingredientes.store') }}" method="POST">
+                    <form action="{{ route('ingrediente.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>

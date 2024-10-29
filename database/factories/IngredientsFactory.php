@@ -19,6 +19,7 @@ class IngredientsFactory extends Factory
     {
 
         $faker = \Faker\Factory::create('es_ES');
+
         return [
             'nombre' => $this->faker->name,
             'descripcion' => $this->faker->sentence,
