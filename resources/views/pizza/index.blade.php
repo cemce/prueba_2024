@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Pizzas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
 </head>
 <body>
     <div class="container mt-5">
@@ -16,7 +18,7 @@
         @if($pizzas->isEmpty())
             <p>No hay pizzas disponibles.</p>
         @else
-            <table class="table table-bordered">
+            <table id="pizzasTable" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -40,13 +42,16 @@
                                 </ul>
                             </td>
                             <td>
-                            <a href="{{route('pizza.edit', $pizza->id) }}">
-                                <button type="button" class="btn btn-info btn-show">Editar</button></a>
-                            </a>
-                               <a href="{{route('pizza.delete', $pizza->id) }}">
-                                <button type="submit" class="btn btn-danger btn-danger">Borrar</button>
-                               </a>
-                            </form>
+                                <a href="{{ route('pizza.edit', $pizza->id) }}"  style="display:inline;">
+                                    <button type="submit" class="btn btn-info">Editar</button>
+                                </a>
+                                <form action="{{ route('pizza.delete', $pizza->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('POST')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pizza?');">
+                                        Borrar
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -98,18 +103,23 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Scripts -->
+<script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
     <script>
         $(document).ready(function() {
+
+            $('#pizzasTable').DataTable();
+
+
             $('#add-ingrediente').click(function() {
                 var ingredienteHtml = `
                     <div class="input-group mb-3">

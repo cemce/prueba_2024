@@ -36,7 +36,7 @@ class IngredientsController extends Controller
         return redirect()->route('ingrediente.index');
     }
 
-    public function destroy(Ingrediente $ingrediente) {
+    public function delete(Ingrediente $ingrediente) {
         $ingrediente->delete();
         return redirect()->route('ingrediente.index');
     }

@@ -22,6 +22,7 @@ Route::prefix('ingredientes')->middleware(['auth'])->group(function () {
     Route::get('/', [IngredientsController::class, 'index'])->name('ingrediente.index');
     Route::get('/create', [IngredientsController::class, 'create'])->name('ingrediente.create');
     Route::post('/', [IngredientsController::class, 'store'])->name('ingrediente.store');
+    Route::post('/{ingrediente}/delete', [IngredientsController::class, 'delete'])->name('ingrediente.delete');
     Route::get('/{ingrediente}', [IngredientsController::class, 'show'])->name('ingrediente.show');
 });
 
