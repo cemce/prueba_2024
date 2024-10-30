@@ -19,9 +19,6 @@ pizzas/index.blade.php: Lista de pizzas.
 pizzas/edit.blade.php: Formulario para editar una pizza.
 ingredientes/index.blade.php: Lista de ingredientes.
 ## Decisión de diseño
-Se ha dejado de lado los Observer, Listeners y Events debido a la poca profundidad de la tarea. Aún así, se ha hecho el Factory, aunque personalmente siempre he usado Seeder para hacer los fakers de  la base de datos.
-
-Tampoco se ha usado Repositories por lo mismo, y todas aquellas funciones necesarias se han usado dentro de los modelos pertinentes.
-
-Por el poco tiempo que he tenido en las manos, se han hecho los todos los métodos de los Controllers posibles para que se vea que entiendo la función de los mismos, pero por problemas ajenos a mi persona (fallo XAMPP MySQL, ida de luz por las lluvias en casa...)
-no he podido hacer las vistas de edit.
+Se ha dejado de lado los Observer, Listeners y Events debido a la poca profundidad de la tarea. Aún así, se ha hecho el Factory, aunque no se han usado para que se vea que controlo de la estructura de los mismos.
+Había pensado en usar Seeders para la base de datos, pero he prefereido no hacerlo.
+Se han hecho comentarios en el código explicando el porque de algunas acciones, como el no uso de Repositories y demás.
